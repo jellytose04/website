@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORRUPT MOB HOMEPAGE</title>
+    <style>
+        /* 90s RESET & BASE STYLES */
+        body {
+            background-color: #000000;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2rVrf2QAAzQyAAgwAAgwAH0wAsz4E0zQAAAABJRU5ErkJggg=='); /* Simple retro dot grid */
+            color: #00FF00;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 10px;
+        }
+
+        /* RETRO MARQUEE & HEADERS */
+        .marquee-container {
+            background-color: #0000AA;
+            color: #FFFF00;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 24px;
+            font-weight: bold;
+            border: 3px ridge #c0c0c0;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: "Comic Sans MS", "Times New Roman", serif;
+            color: #FF0000;
+            font-size: 40px;
+            text-shadow: 2px 2px #FFFF00;
+            margin: 10px 0;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        hr {
+            border: 0;
+            height: 3px;
+            background-color: #c0c0c0;
+            border-top: 2px solid #ffffff;
+            border-bottom: 2px solid #808080;
+            margin: 20px 0;
+        }
+
+        /* 90s TABLE LAYOUT (Simulated with Flexbox for sanity) */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #222222;
+            border: 5px outset #c0c0c0;
+            padding: 20px;
+        }
+
+        .panel {
+            flex: 1;
+            min-width: 300px;
+            background-color: #000000;
+            border: 4px inset #c0c0c0;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .panel h2 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            text-decoration: underline;
+        }
+
+        .original-title { color: #00FFFF; }
+        .corrupted-title { color: #FF00FF; }
+
+        .image-container {
+            background: #000080; /* Classic dark blue */
+            padding: 5px;
+            border: 2px solid #ffffff;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            image-rendering: pixelated; /* Crunchy pixels */
+        }
+
+        .vs-text {
+            font-family: Impact, sans-serif;
+            font-size: 40px;
+            color: #FFFF00;
+            text-shadow: 3px 3px #FF0000;
+        }
+
+        /* WINDOWS 95 STYLE BUTTONS */
+        .controls {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .win95-btn {
+            background-color: #c0c0c0;
+            border-top: 3px solid #ffffff;
+            border-left: 3px solid #ffffff;
+            border-right: 3px solid #808080;
+            border-bottom: 3px solid #808080;
+            color: #000000;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .win95-btn:active {
+            border-top: 3px solid #808080;
+            border-left: 3px solid #808080;
+            border-right: 3px solid #ffffff;
+            border-bottom: 3px solid #ffffff;
+            background-color: #a0a0a0;
+        }
+
+        .btn-corrupt {
+            color: #800000;
+        }
+
+        .btn-download {
+            color: #000080;
+        }
+
+        /* RETRO EXTRAS */
+        .hit-counter {
+            text-align: center;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 18px;
+        }
+
+        .hit-counter-digits {
+            background-color: #000000;
+            color: #FF0000;
+            border: 3px inset #c0c0c0;
+            padding: 2px 10px;
+            letter-spacing: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        .error-box {
+            background-color: #c0c0c0;
+            border: 4px outset #ffffff;
+            color: #000000;
+            padding: 20px;
+            text-align: center;
+            max-width: 500px;
+            margin: 50px auto;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+        }
+
+        .error-box h2 {
+            background-color: #0000AA;
+            color: #FFFFFF;
+            margin: -20px -20px 20px -20px;
+            padding: 5px;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .hidden { display: none; }
+
+        center {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-container">
+        <marquee scrollamount="8">
+            🔥💀🔥 WELCOME TO THE CORRUPT MOB HOMEPAGE 🔥💀🔥 BEST VIEWED IN NETSCAPE NAVIGATOR 3.0 🔥💀🔥
+        </marquee>
+    </div>
+
+    <h1><span class="blink">☠</span> CORRUPT MOB <span class="blink">☠</span></h1>
+    <p class="subtitle">&lt;BLINK&gt; IMAGE CORRUPTION ENGINE v1.99 &lt;/BLINK&gt;</p>
+    
+    <hr>
+
+    <div class="main-content" id="mainContent">
+
+        <div class="panel">
+            <h2 class="original-title">ORIGINAL.GIF</h2>
+            <div class="image-container">
+                <canvas id="originalCanvas"></canvas>
+            </div>
+        </div>
+
+        <div class="vs-text">VS</div>
+
+        <div class="panel">
+            <h2 class="corrupted-title">CORRUPTED.GIF</h2>
+            <div class="image-container">
+                <canvas id="corruptedCanvas"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls" id="controlsArea">
+        <button class="win95-btn btn-corrupt" onclick="corruptAgain()">
+            !! CORRUPT AGAIN !!
+        </button>
+        <button class="win95-btn btn-download" onclick="downloadImage()">
+            💾 DOWNLOAD IMG
+        </button>
+    </div>
+
+    <div class="hit-counter" id="counterArea">
+        YOU HAVE CORRUPTED THIS MOB: <br>
+        <div class="hit-counter-digits" id="countDisplay">000001</div> TIMES
+    </div>
+
+    <center>
+        <br>
+        <p style="font-size:12px; color:#888;">
+            Copyright © 1998 Corrupt Mob Inc. <br>
+            <a href="#" style="color:#0000FF;">Email the Webmaster</a> | <a href="#" style="color:#0000FF;">Sign my Guestbook</a>
+        </p>
+    </center>
+
+    <!-- ERROR SCREEN (Shows if mob.png is missing) -->
+    <div class="error-box hidden" id="errorContent">
+        <h2>⚠ Application Error</h2>
+        <p><strong>Fatal Exception 0E: File Not Found</strong></p>
+        <p>The file <code>mob.png</code> was not detected in the current directory.</p>
+        <p>Please place <code>mob.png</code> in the exact same folder as this webpage and hit <strong>F5</strong> to refresh.</p>
+        <button class="win95-btn" onclick="location.reload()">OK</button>
+    </div>
+
+    <script>
+        const originalCanvas = document.getElementById('originalCanvas');
+        const corruptedCanvas = document.getElementById('corruptedCanvas');
+        const origCtx = originalCanvas.getContext('2d');
+        const corrCtx = corruptedCanvas.getContext('2d');
+
+        let imgObj = null;
+        let corruptionCount = 1;
+        let imgWidth = 0;
+        let imgHeight = 0;
+
+        // Pad number with zeros for retro hit counter
+        function pad(num, size) {
+            let s = num + "";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const img = new Image();
+            img.onload = function () {
+                imgObj = img;
+                const maxW = 400; // Scaled down for retro feel
+                let w = img.width;
+                let h = img.height;
+
+                if (w > maxW) {
+                    h = Math.floor(h * (maxW / w));
+                    w = maxW;
+                }
+
+                imgWidth = w;
+                imgHeight = h;
+
+                originalCanvas.width = w;
+                originalCanvas.height = h;
+                corruptedCanvas.width = w;
+                corruptedCanvas.height = h;
+
+                origCtx.drawImage(img, 0, 0, w, h);
+
+                document.getElementById('mainContent').classList.remove('hidden');
+                document.getElementById('controlsArea').classList.remove('hidden');
+                document.getElementById('counterArea').classList.remove('hidden');
+                document.getElementById('errorContent').classList.add('hidden');
+
+                corruptImage();
+            };
+            img.onerror = function () {
+                document.getElementById('mainContent').classList.add('hidden');
+                document.getElementById('controlsArea').classList.add('hidden');
+                document.getElementById('counterArea').classList.add('hidden');
+                document.getElementById('errorContent').classList.remove('hidden');
+            };
+            img.src = 'mob.png';
+        });
+
+        function corruptImage() {
+            if (!imgObj) return;
+
+            const w = imgWidth;
+            const h = imgHeight;
+
+            // Reset corrupted canvas
+            corrCtx.filter = 'none';
+            corrCtx.globalCompositeOperation = 'source-over';
+            corrCtx.globalAlpha = 1.0;
+            corrCtx.fillStyle = '#000000';
+            corrCtx.fillRect(0, 0, w, h);
+
+            // Base Image
+            corrCtx.drawImage(imgObj, 0, 0, w, h);
+
+            // Glitch slices (Color & Invert)
+            const numColorSlices = Math.floor(Math.random() * 8) + 4;
+            for (let i = 0; i < numColorSlices; i++) {
+                const sy = Math.random() * h;
+                const sh = Math.random() * (h * 0.2) + 5;
+                const hue = Math.floor(Math.random() * 360);
+                const invert = Math.random() > 0.5 ? 100 : 0;
+
+                corrCtx.save();
+                corrCtx.filter = `invert(${invert}%) hue-rotate(${hue}deg) contrast(200%)`;
+                corrCtx.drawImage(imgObj, 0, sy, w, sh, 0, sy, w, sh);
+                corrCtx.restore();
+            }
+
+            // Displacement shifting
+            const numDisplacements = Math.floor(Math.random() * 25) + 10;
+            for (let i = 0; i < numDisplacements; i++) {
+                const sy = Math.random() * h;
+                const sh = Math.random() * 20 + 2;
+                const dx = (Math.random() - 0.5) * (w * 0.5);
+                corrCtx.drawImage(imgObj, 0, sy, w, sh, dx, sy, w, sh);
+            }
+
+            // 90s Pixelation crunch (Mosaic effect)
+            const doPixelate = Math.random() > 0.3;
+            if (doPixelate) {
+                const numMosaics = Math.floor(Math.random() * 5) + 2;
+                for (let i = 0; i < numMosaics; i++) {
+                    const bx = Math.random() * (w - 100);
+                    const by = Math.random() * (h - 100);
+                    const bw = Math.random() * 100 + 40;
+                    const bh = Math.random() * 80 + 30;
+
+                    corrCtx.save();
+                    corrCtx.imageSmoothingEnabled = false;
+                    // Shrink down
+                    corrCtx.drawImage(imgObj, bx, by, bw, bh, bx, by, bw / 8, bh / 8);
+                    // Stretch up to create giant pixels
+                    corrCtx.drawImage(corruptedCanvas, bx, by, bw / 8, bh / 8, bx, by, bw, bh);
+                    corrCtx.restore();
+                }
+            }
+
+            // VHS / CRT Scanlines
+            corrCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            for (let y = 0; y < h; y += 4) {
+                corrCtx.fillRect(0, y, w, 2);
+            }
+
+            // Chromatic shift
+            const shiftX = (Math.random() - 0.5) * 20;
+            corrCtx.save();
+            corrCtx.globalCompositeOperation = 'lighter';
+            corrCtx.globalAlpha = 0.5;
+            corrCtx.filter = 'hue-rotate(180deg)';
+            corrCtx.drawImage(imgObj, shiftX, 0, w, h);
+            corrCtx.restore();
+        }
+
+        function corruptAgain() {
+            if (!imgObj) return;
+            corruptImage();
+            corruptionCount++;
+            document.getElementById('countDisplay').textContent = pad(corruptionCount, 6);
+        }
+
+        // DOWNLOAD FUNCTION
+        function downloadImage() {
+            if (!imgObj) return;
+            
+            try {
+                const dataURL = corruptedCanvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'corrupted_mob.png';
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (err) {
+                // If local file causes a Canvas Taint security error in some browsers
+                alert("SYSTEM ERROR:\nYour modern browser is blocking the automatic download for security reasons (Local File Restrictions).\n\nWORKAROUND: Right-Click the Corrupted Image and choose 'Save image as...'!");
+            }
+        }
+    </script>
+
+</body>
+</html>
